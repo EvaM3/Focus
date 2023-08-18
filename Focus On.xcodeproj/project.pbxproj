@@ -14,6 +14,33 @@
 		A0581A7F2A06724B008CF87C /* Focus_On.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A0581A7D2A06724B008CF87C /* Focus_On.xcdatamodeld */; };
 		A0581A812A06724C008CF87C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0581A802A06724C008CF87C /* Assets.xcassets */; };
 		A0581A842A06724C008CF87C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0581A822A06724C008CF87C /* LaunchScreen.storyboard */; };
+		A0581A8D2A0677DC008CF87C /* GoalEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0581A8B2A0677DC008CF87C /* GoalEntity+CoreDataClass.swift */; };
+		A0581A8E2A0677DC008CF87C /* GoalEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0581A8C2A0677DC008CF87C /* GoalEntity+CoreDataProperties.swift */; };
+		A0581A912A067827008CF87C /* TaskEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0581A8F2A067827008CF87C /* TaskEntity+CoreDataClass.swift */; };
+		A0581A922A067827008CF87C /* TaskEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0581A902A067827008CF87C /* TaskEntity+CoreDataProperties.swift */; };
+		A0581A952A067909008CF87C /* TodaysModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0581A942A067909008CF87C /* TodaysModel.swift */; };
+		A0581A972A067950008CF87C /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0581A962A067950008CF87C /* Goal.swift */; };
+		A0581A9B2A0679E0008CF87C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0581A9A2A0679E0008CF87C /* Task.swift */; };
+		A0581A9D2A067AF8008CF87C /* ListElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0581A9C2A067AF8008CF87C /* ListElement.swift */; };
+		A0581AA02A067B6F008CF87C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0581A9F2A067B6F008CF87C /* DataController.swift */; };
+		A0581AA32A068568008CF87C /* DateFormattingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0581AA22A068568008CF87C /* DateFormattingHelper.swift */; };
+		A0581AA72A0686B0008CF87C /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0581AA62A0686B0008CF87C /* Checkbox.swift */; };
+		A0581AAB2A068B5F008CF87C /* GoalCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0581AAA2A068B5F008CF87C /* GoalCheckbox.swift */; };
+		A0581AAD2A068CA2008CF87C /* TodaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0581AAC2A068CA2008CF87C /* TodaysViewController.swift */; };
+		A0581AAF2A068EEB008CF87C /* GoalCheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0581AAE2A068EEB008CF87C /* GoalCheckCell.swift */; };
+		A0581AB12A068F3F008CF87C /* CheckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0581AB02A068F3F008CF87C /* CheckTableViewCell.swift */; };
+		A0581AB32A069034008CF87C /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0581AB22A069034008CF87C /* TaskViewController.swift */; };
+		A0581AB52A06907B008CF87C /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0581AB42A06907B008CF87C /* GoalViewController.swift */; };
+		A06E3D2E2A73126D0036E42D /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06E3D2D2A73126D0036E42D /* ProgressViewController.swift */; };
+		A09ACD8C2A23F8B500F97724 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09ACD8B2A23F8B500F97724 /* DataManager.swift */; };
+		A0ABE15D2A6EF5CC003AE3AA /* HistoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ABE15C2A6EF5CC003AE3AA /* HistoryListViewController.swift */; };
+		A0ABE15F2A6EF777003AE3AA /* HistoryListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ABE15E2A6EF777003AE3AA /* HistoryListModel.swift */; };
+		A0ABE1622A6EFC87003AE3AA /* GoalHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ABE1602A6EFC87003AE3AA /* GoalHistoryTableViewCell.swift */; };
+		A0ABE1632A6EFC87003AE3AA /* GoalHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0ABE1612A6EFC87003AE3AA /* GoalHistoryTableViewCell.xib */; };
+		A0ABE1662A6F079B003AE3AA /* TaskHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ABE1642A6F079B003AE3AA /* TaskHistoryTableViewCell.swift */; };
+		A0ABE1672A6F079B003AE3AA /* TaskHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0ABE1652A6F079B003AE3AA /* TaskHistoryTableViewCell.xib */; };
+		A0ABE16A2A6F0924003AE3AA /* SummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ABE1682A6F0924003AE3AA /* SummaryCell.swift */; };
+		A0ABE16B2A6F0924003AE3AA /* SummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0ABE1692A6F0924003AE3AA /* SummaryCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +53,33 @@
 		A0581A802A06724C008CF87C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0581A832A06724C008CF87C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A0581A852A06724C008CF87C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0581A8B2A0677DC008CF87C /* GoalEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A0581A8C2A0677DC008CF87C /* GoalEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A0581A8F2A067827008CF87C /* TaskEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A0581A902A067827008CF87C /* TaskEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A0581A942A067909008CF87C /* TodaysModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysModel.swift; sourceTree = "<group>"; };
+		A0581A962A067950008CF87C /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		A0581A9A2A0679E0008CF87C /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		A0581A9C2A067AF8008CF87C /* ListElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListElement.swift; sourceTree = "<group>"; };
+		A0581A9F2A067B6F008CF87C /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		A0581AA22A068568008CF87C /* DateFormattingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormattingHelper.swift; sourceTree = "<group>"; };
+		A0581AA62A0686B0008CF87C /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		A0581AAA2A068B5F008CF87C /* GoalCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCheckbox.swift; sourceTree = "<group>"; };
+		A0581AAC2A068CA2008CF87C /* TodaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysViewController.swift; sourceTree = "<group>"; };
+		A0581AAE2A068EEB008CF87C /* GoalCheckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCheckCell.swift; sourceTree = "<group>"; };
+		A0581AB02A068F3F008CF87C /* CheckTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckTableViewCell.swift; sourceTree = "<group>"; };
+		A0581AB22A069034008CF87C /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		A0581AB42A06907B008CF87C /* GoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
+		A06E3D2D2A73126D0036E42D /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
+		A09ACD8B2A23F8B500F97724 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		A0ABE15C2A6EF5CC003AE3AA /* HistoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListViewController.swift; sourceTree = "<group>"; };
+		A0ABE15E2A6EF777003AE3AA /* HistoryListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListModel.swift; sourceTree = "<group>"; };
+		A0ABE1602A6EFC87003AE3AA /* GoalHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		A0ABE1612A6EFC87003AE3AA /* GoalHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoalHistoryTableViewCell.xib; sourceTree = "<group>"; };
+		A0ABE1642A6F079B003AE3AA /* TaskHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		A0ABE1652A6F079B003AE3AA /* TaskHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskHistoryTableViewCell.xib; sourceTree = "<group>"; };
+		A0ABE1682A6F0924003AE3AA /* SummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCell.swift; sourceTree = "<group>"; };
+		A0ABE1692A6F0924003AE3AA /* SummaryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +97,13 @@
 			isa = PBXGroup;
 			children = (
 				A0581A732A06724B008CF87C /* Focus On */,
+				A0581A9E2A067B52008CF87C /* Controllers */,
+				A0581A932A0678AD008CF87C /* Model */,
+				A0581A8F2A067827008CF87C /* TaskEntity+CoreDataClass.swift */,
+				A0581A902A067827008CF87C /* TaskEntity+CoreDataProperties.swift */,
+				A0581A8B2A0677DC008CF87C /* GoalEntity+CoreDataClass.swift */,
+				A0581A8C2A0677DC008CF87C /* GoalEntity+CoreDataProperties.swift */,
+				A0581AA12A068546008CF87C /* Helpers */,
 				A0581A722A06724B008CF87C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,8 +127,52 @@
 				A0581A822A06724C008CF87C /* LaunchScreen.storyboard */,
 				A0581A852A06724C008CF87C /* Info.plist */,
 				A0581A7D2A06724B008CF87C /* Focus_On.xcdatamodeld */,
+				A09ACD8B2A23F8B500F97724 /* DataManager.swift */,
 			);
 			path = "Focus On";
+			sourceTree = "<group>";
+		};
+		A0581A932A0678AD008CF87C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A0581A942A067909008CF87C /* TodaysModel.swift */,
+				A0581A962A067950008CF87C /* Goal.swift */,
+				A0581A9A2A0679E0008CF87C /* Task.swift */,
+				A0581A9C2A067AF8008CF87C /* ListElement.swift */,
+				A0ABE15E2A6EF777003AE3AA /* HistoryListModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A0581A9E2A067B52008CF87C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A0581A9F2A067B6F008CF87C /* DataController.swift */,
+				A0581AAC2A068CA2008CF87C /* TodaysViewController.swift */,
+				A0581AB22A069034008CF87C /* TaskViewController.swift */,
+				A0581AB42A06907B008CF87C /* GoalViewController.swift */,
+				A0ABE15C2A6EF5CC003AE3AA /* HistoryListViewController.swift */,
+				A06E3D2D2A73126D0036E42D /* ProgressViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A0581AA12A068546008CF87C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A0581AA22A068568008CF87C /* DateFormattingHelper.swift */,
+				A0581AAA2A068B5F008CF87C /* GoalCheckbox.swift */,
+				A0581AA62A0686B0008CF87C /* Checkbox.swift */,
+				A0581AAE2A068EEB008CF87C /* GoalCheckCell.swift */,
+				A0581AB02A068F3F008CF87C /* CheckTableViewCell.swift */,
+				A0ABE1602A6EFC87003AE3AA /* GoalHistoryTableViewCell.swift */,
+				A0ABE1612A6EFC87003AE3AA /* GoalHistoryTableViewCell.xib */,
+				A0ABE1642A6F079B003AE3AA /* TaskHistoryTableViewCell.swift */,
+				A0ABE1652A6F079B003AE3AA /* TaskHistoryTableViewCell.xib */,
+				A0ABE1682A6F0924003AE3AA /* SummaryCell.swift */,
+				A0ABE1692A6F0924003AE3AA /* SummaryCell.xib */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -129,7 +234,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0581A842A06724C008CF87C /* LaunchScreen.storyboard in Resources */,
+				A0ABE1632A6EFC87003AE3AA /* GoalHistoryTableViewCell.xib in Resources */,
+				A0ABE1672A6F079B003AE3AA /* TaskHistoryTableViewCell.xib in Resources */,
 				A0581A812A06724C008CF87C /* Assets.xcassets in Resources */,
+				A0ABE16B2A6F0924003AE3AA /* SummaryCell.xib in Resources */,
 				A0581A7C2A06724B008CF87C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,10 +249,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0ABE15F2A6EF777003AE3AA /* HistoryListModel.swift in Sources */,
+				A0581AB52A06907B008CF87C /* GoalViewController.swift in Sources */,
+				A0581AA72A0686B0008CF87C /* Checkbox.swift in Sources */,
+				A06E3D2E2A73126D0036E42D /* ProgressViewController.swift in Sources */,
+				A0ABE1662A6F079B003AE3AA /* TaskHistoryTableViewCell.swift in Sources */,
+				A0581A952A067909008CF87C /* TodaysModel.swift in Sources */,
+				A0581A912A067827008CF87C /* TaskEntity+CoreDataClass.swift in Sources */,
+				A0581A9D2A067AF8008CF87C /* ListElement.swift in Sources */,
+				A0581AB12A068F3F008CF87C /* CheckTableViewCell.swift in Sources */,
+				A0581AAD2A068CA2008CF87C /* TodaysViewController.swift in Sources */,
+				A0ABE15D2A6EF5CC003AE3AA /* HistoryListViewController.swift in Sources */,
+				A0581A922A067827008CF87C /* TaskEntity+CoreDataProperties.swift in Sources */,
 				A0581A792A06724B008CF87C /* ViewController.swift in Sources */,
+				A09ACD8C2A23F8B500F97724 /* DataManager.swift in Sources */,
+				A0581A9B2A0679E0008CF87C /* Task.swift in Sources */,
+				A0581AAB2A068B5F008CF87C /* GoalCheckbox.swift in Sources */,
+				A0581AA32A068568008CF87C /* DateFormattingHelper.swift in Sources */,
+				A0ABE1622A6EFC87003AE3AA /* GoalHistoryTableViewCell.swift in Sources */,
 				A0581A7F2A06724B008CF87C /* Focus_On.xcdatamodeld in Sources */,
 				A0581A752A06724B008CF87C /* AppDelegate.swift in Sources */,
+				A0581A8D2A0677DC008CF87C /* GoalEntity+CoreDataClass.swift in Sources */,
 				A0581A772A06724B008CF87C /* SceneDelegate.swift in Sources */,
+				A0581A972A067950008CF87C /* Goal.swift in Sources */,
+				A0ABE16A2A6F0924003AE3AA /* SummaryCell.swift in Sources */,
+				A0581AAF2A068EEB008CF87C /* GoalCheckCell.swift in Sources */,
+				A0581AB32A069034008CF87C /* TaskViewController.swift in Sources */,
+				A0581AA02A067B6F008CF87C /* DataController.swift in Sources */,
+				A0581A8E2A0677DC008CF87C /* GoalEntity+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

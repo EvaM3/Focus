@@ -1,19 +1,20 @@
 //
-//  ViewController.swift
+//  ProgressViewController.swift
 //  Focus On
 //
-//  Created by Eva Madarasz on 06/05/2023.
+//  Created by Eva Sira Madarasz on 27/07/2023.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class ProgressViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
+    
 
-
+   
 }
-

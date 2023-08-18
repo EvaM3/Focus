@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Focus On
 //
-//  Created by Eva Sira Madarasz on 06/05/2023.
+//  Created by Eva  Madarasz on 06/05/2023.
 //
 
 import UIKit
@@ -11,8 +11,7 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
@@ -77,5 +76,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+   
 }
 
+
+//extension NSManagedObject {
+//
+//    convenience init(managedObjectContext: NSManagedObjectContext) {
+//        let entityName = "GoalEntity"
+//        let entity = NSEntityDescription.entity(forEntityName: entityName, in: managedObjectContext)!
+//        self.init(entity: entity, insertInto: managedObjectContext)
+//    }
+//}
