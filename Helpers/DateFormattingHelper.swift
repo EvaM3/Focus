@@ -7,13 +7,15 @@
 
 import Foundation
 
+
+
 struct DateFormattingHelper {
     
     
     private let goalSectionDateFormatter = DateFormatter()
     private let summarySectionDateFormatter = DateFormatter()
     private let todayString = "Today"
-    
+   
     
     init() {
         self.goalSectionDateFormatter.dateFormat = "dd. MM. yyyy"
@@ -21,8 +23,16 @@ struct DateFormattingHelper {
         
     }
     
-    
+//    func sortDates() {
+//        var customDate = ["","","","","",""]
+//        customDate = customDate.sorted(by: {
+//            $0.date.compare($1.date) == .orderedDescending
+//    }
+//}
+                                       
     func makeFormattedExactDate(date: Date) -> String {
+       
+        
         if Calendar.current.isDateInToday(date) {
             return todayString
         } else {

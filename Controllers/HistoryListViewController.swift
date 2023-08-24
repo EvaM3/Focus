@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import OSLog
+
+let logger = Logger(subsystem: "tora.buke-gmail.com.Focus-On", category: "HistoryListViewController")
 
 class HistoryListViewController: UIViewController {
 
@@ -67,7 +70,7 @@ extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource 
                 return cell
             }
 
-            if indexPath.row == 1 {
+            if indexPath.row == 2 {
                 let cell:GoalHistoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "goalcell", for: indexPath) as! GoalHistoryTableViewCell
                 cell.configureCheckMarkedCell(item: element)
                 cell.textLabel?.text = element.title
@@ -80,7 +83,7 @@ extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource 
                 return cell
             }
          
-        
+           
         }
         
         return UITableViewCell()
@@ -98,6 +101,7 @@ extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource 
           
         case .summary:
             return 70
+           
         }
     }
 //    
@@ -107,6 +111,7 @@ extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource 
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.listModel.sections.count
+        
     }
     
 
@@ -121,8 +126,9 @@ extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource 
         label.textColor = .black
         label.backgroundColor = .systemBlue
         headerView.addSubview(label)
-        dump(label)
-
+        logger.info("Info: \(Goal.ID.self)")
+       
+      
         return headerView
        
     }

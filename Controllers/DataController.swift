@@ -42,15 +42,18 @@ class CoreDataManager: CoreDataLoaderProtocol, CoreDataUpdaterProtocol {
         let goalEntities = loadGoalEntities(predicate: predicate)
         let goals = goalEntities.map { goalEntity in
             mapToGoal(entity: goalEntity)
+    
         }
         return goals
     }
     
     private func loadGoalEntities(predicate: NSPredicate? = nil) -> [GoalEntity] {
         let request : NSFetchRequest<GoalEntity> =  GoalEntity.fetchRequest()
-//        let date = NSDate()
-//        let predicate = NSPredicate(format: "date > %@", date)
-        request.predicate = predicate
+       // let date = NSDate()
+       // let predicate = NSPredicate(format: " creationDate > %@")
+        //predicate.evaluate(with: date)
+      //  request.predicate = predicate
+        
         do {
             let goalEntities = try context.fetch(request)
             
@@ -79,6 +82,7 @@ class CoreDataManager: CoreDataLoaderProtocol, CoreDataUpdaterProtocol {
     
     
     func saveGoal(goal: Goal) {
+        dump(goal.id)
         guard (existingGoalEntity(id: goal.id) == nil) else {
             return
         }
@@ -210,7 +214,7 @@ class CoreDataManager: CoreDataLoaderProtocol, CoreDataUpdaterProtocol {
         return newItem
     }
     
-    
+ 
     
     func getTodaysDate() -> Date {
         let todaysDate = Date()

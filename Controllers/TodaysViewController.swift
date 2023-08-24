@@ -103,6 +103,7 @@ class TodaysViewController: UIViewController, UITableViewDataSource, UITableView
         }
         do {
             try context.save()
+            
             getGoal()
         }  catch {
             
@@ -243,7 +244,7 @@ class TodaysViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return  4//todaysGoal.count 
+        return  4 //tasks.count
        
     }
     
