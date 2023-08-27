@@ -41,9 +41,11 @@
 		A0ABE1672A6F079B003AE3AA /* TaskHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0ABE1652A6F079B003AE3AA /* TaskHistoryTableViewCell.xib */; };
 		A0ABE16A2A6F0924003AE3AA /* SummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ABE1682A6F0924003AE3AA /* SummaryCell.swift */; };
 		A0ABE16B2A6F0924003AE3AA /* SummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0ABE1692A6F0924003AE3AA /* SummaryCell.xib */; };
+		F96DD950C67DEB7FE66C90EF /* Pods_Focus_On.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009559DDB4577FF573AF7543 /* Pods_Focus_On.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		009559DDB4577FF573AF7543 /* Pods_Focus_On.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Focus_On.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0581A712A06724B008CF87C /* Focus On.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Focus On.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0581A742A06724B008CF87C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0581A762A06724B008CF87C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,8 @@
 		A0ABE1652A6F079B003AE3AA /* TaskHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		A0ABE1682A6F0924003AE3AA /* SummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCell.swift; sourceTree = "<group>"; };
 		A0ABE1692A6F0924003AE3AA /* SummaryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryCell.xib; sourceTree = "<group>"; };
+		B7C593B48DBB295E0069330E /* Pods-Focus On.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Focus On.release.xcconfig"; path = "Target Support Files/Pods-Focus On/Pods-Focus On.release.xcconfig"; sourceTree = "<group>"; };
+		ED7B2811EC42EFE475A35D90 /* Pods-Focus On.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Focus On.debug.xcconfig"; path = "Target Support Files/Pods-Focus On/Pods-Focus On.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,12 +91,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F96DD950C67DEB7FE66C90EF /* Pods_Focus_On.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		88483847BF880EF25E768FAB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ED7B2811EC42EFE475A35D90 /* Pods-Focus On.debug.xcconfig */,
+				B7C593B48DBB295E0069330E /* Pods-Focus On.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9D86B83EED8423E8617A9CE9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				009559DDB4577FF573AF7543 /* Pods_Focus_On.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A0581A682A06724B008CF87C = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +128,8 @@
 				A0581A8C2A0677DC008CF87C /* GoalEntity+CoreDataProperties.swift */,
 				A0581AA12A068546008CF87C /* Helpers */,
 				A0581A722A06724B008CF87C /* Products */,
+				88483847BF880EF25E768FAB /* Pods */,
+				9D86B83EED8423E8617A9CE9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -182,9 +207,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A0581A882A06724C008CF87C /* Build configuration list for PBXNativeTarget "Focus On" */;
 			buildPhases = (
+				E5D41E215091BF63BD8A7369 /* [CP] Check Pods Manifest.lock */,
 				A0581A6D2A06724B008CF87C /* Sources */,
 				A0581A6E2A06724B008CF87C /* Frameworks */,
 				A0581A6F2A06724B008CF87C /* Resources */,
+				5E1F9C4417D6C0EBA8711E04 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -243,6 +270,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5E1F9C4417D6C0EBA8711E04 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Focus On/Pods-Focus On-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Focus On/Pods-Focus On-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Focus On/Pods-Focus On-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5D41E215091BF63BD8A7369 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Focus On-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A0581A6D2A06724B008CF87C /* Sources */ = {
@@ -418,6 +487,7 @@
 		};
 		A0581A892A06724C008CF87C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED7B2811EC42EFE475A35D90 /* Pods-Focus On.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -447,6 +517,7 @@
 		};
 		A0581A8A2A06724C008CF87C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7C593B48DBB295E0069330E /* Pods-Focus On.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
