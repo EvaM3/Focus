@@ -12,6 +12,7 @@ class SummaryCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     
     
+    
     func configureSummaryCell(item: ListElement) {
         title.text = item.title
     }

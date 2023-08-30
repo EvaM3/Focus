@@ -16,7 +16,7 @@ class ProgressViewController: UIViewController {
     }
 
     private func createChart() {
-        // Create bar chart
+        // Create progress bar chart
         let barChart = BarChartView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.width))
         
         // Configure the axis

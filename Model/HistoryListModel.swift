@@ -29,23 +29,34 @@ class HistoryListModel: HistoryListModelProtocol {
     private var dataManager: CoreDataLoaderProtocol
     private let dateFormattingHelper = DateFormattingHelper()
     private var currentSummaryYearAndMonth: String?
+    private var currentCreationDate: String?
     private var currentYearAndMonth: String?
+    private var currentDay = Date()
     private var totalGoalsCounter = 0
     private var completedGoalsCounter = 0
-  
+   
     
     
     var sections = [String]()
     var sectionRows =  [[ListElement]]()
-   
+    
     init(dataManager: CoreDataLoaderProtocol) {
         self.dataManager = dataManager
     }
     
+    var newGoal = [
+        Goal(id: UUID(), tasks: [Task](), title: "Finish the app.", completed: false, creationDate: Date.customGoalDatetoString(customString: "27/08/2023"), achievedDate: nil),
+        Goal(id: UUID(), tasks: [Task](), title: "Complete the project", completed: false, creationDate: Date.customGoalDatetoString(customString: "28/08/2023"), achievedDate: nil),
+        Goal(id: UUID(), tasks: [Task](), title: "Study more", completed: false, creationDate: Date.customGoalDatetoString(customString: "26/08/2023"), achievedDate: nil),
+        Goal(id: UUID(), tasks: [Task](), title: "Practice violin", completed: false, creationDate: Date.customGoalDatetoString(customString: "25/08/2023"), achievedDate: nil),
+        Goal(id: UUID(), tasks: [Task](), title: "Practice piano", completed: false, creationDate: Date.customGoalDatetoString(customString: "24/08/2023"), achievedDate: nil)
+    ]
     
     func loadData() {
         //dataManager.generateRandomData()
         generateData(from: dataManager.loadGoal(predicate: nil))
+      //  groupGoals()
+       
     }
     
     // MARK: Data loading functions
@@ -54,7 +65,7 @@ class HistoryListModel: HistoryListModelProtocol {
         var elementArray = [ListElement]()
         let newGoalEntity = ListElement(from: goal)
         elementArray.append(newGoalEntity)
-         historylogger.info("Info: \(goal.id)")
+        historylogger.info("Info: \(goal.id)")
         for task in goal.tasks {
             let taskListElement = ListElement(from: task)
             elementArray.append(taskListElement)
@@ -85,55 +96,106 @@ class HistoryListModel: HistoryListModelProtocol {
         return summary
     }
 
+    private func orderedGoals(from: [Goal]) {
+        var generatedSections: [String] = []
+        var generatedRows: [[ListElement]] = []
+        let grouped = from.sliced(by: [.year, .month, .day], for: \.creationDate)
+        let sortedGoals = from.sorted { $1.creationDate > $0.creationDate }
+        
+        for goal in sortedGoals {
+            if self.currentCreationDate == nil {
+                self.currentCreationDate = dateFormattingHelper.makeFormattedExactDate(date: goal.creationDate)
+            } else {
+                generatedSections.append(currentCreationDate!)
+                
+                
+                addToStats(goal: goal)
+                
+                generatedRows.append(mapGoal(goal: goal))
+                
+            }
+        }
+    }
+    
   
+    
+    
+    
     private func generateData(from: [Goal]) {
         var generatedSections: [String] = []
         var generatedRows: [[ListElement]] = []
-        let date = Date()
         
-        let sameMonth = Calendar.current.isDate(date, equalTo: date, toGranularity: .month)
+    
         let sortedGoals = from.sorted { $1.creationDate > $0.creationDate }
-     
+        
+//        let groupDate = Dictionary(grouping: generatedSections) { (Goal) -> DateComponents in
+//            let goal = Goal.self
+//            let date = Calendar.current.dateComponents([.day, .year, .month], from: Goal(Goal).goalCreationDate)
+//            return date
+//        }
+        
         for goal in sortedGoals {
             if self.currentSummaryYearAndMonth == nil {
                 self.currentSummaryYearAndMonth = dateFormattingHelper.makeFormattedSummaryDate(date: goal.creationDate)
-                if self.currentSummaryYearAndMonth == currentSummaryYearAndMonth {
-                    
-                }
                 
             } else {
                 let currentGoalYearAndMonth = dateFormattingHelper.makeFormattedSummaryDate(date: goal.creationDate)
                 if currentSummaryYearAndMonth != currentGoalYearAndMonth,
                    let currentSummaryYearAndMonth = currentSummaryYearAndMonth {
-                   
+                    
                     let summary = addToSummary()
                     generatedSections.append(summary.yearAndMonth)
                     generatedRows.append([ListElement(summary: "From \(summary.totalCount) goals \(summary.completedCount) is completed")])
                     
                     self.currentSummaryYearAndMonth = currentGoalYearAndMonth
                     
+                    
                 }
-           
-        }
-        
-        
-        
-        
-        let summary = addToSummary()
-            if currentSummaryYearAndMonth != currentSummaryYearAndMonth {
-        generatedSections.append(self.currentSummaryYearAndMonth ?? "")
+                
+                
+                
             }
-        generatedRows.append([ListElement(summary: "From \(summary.totalCount) goals \(summary.completedCount) is completed")])
-        resetStats()
-        self.sections = generatedSections.reversed()
-        self.sectionRows = generatedRows.reversed()
+            
+            
+            
+            
+            let summary = addToSummary()
+            if currentSummaryYearAndMonth != currentSummaryYearAndMonth {
+                generatedSections.append(self.currentSummaryYearAndMonth ?? "")
+            }
+            generatedRows.append([ListElement(summary: "From \(summary.totalCount) goals \(summary.completedCount) is completed")])
+            resetStats()
+            
+            self.sections = generatedSections.reversed()
+            self.sectionRows = generatedRows.reversed()
+            // orderedGoals(from: [goal])
+        }
+       
         
     }
     
     
+   
 }
 
+
+
+extension Array {
+  func sliced(by dateComponents: Set<Calendar.Component>, for key: KeyPath<Element, Date>) -> [Date: [Element]] {
+    let initial: [Date: [Element]] = [:]
+    let groupedByDateComponents = reduce(into: initial) { acc, cur in
+      let components = Calendar.current.dateComponents(dateComponents, from: cur[keyPath: key])
+      let date = Calendar.current.date(from: components)!
+      let existing = acc[date] ?? []
+      acc[date] = existing + [cur]
+    }
+
+    return groupedByDateComponents
+  }
 }
+
+
+
 extension Sequence where Element: Hashable {
     func uniqued() -> [Element] {
         var set = Set<Element>()
@@ -143,56 +205,5 @@ extension Sequence where Element: Hashable {
     
 }
 
-extension HistoryListModel {
-    
-//    extension RangeReplaceableCollection where Element: Hashable {
-//        var squeezed: Self {
-//            var set = Set<Element>()
-//            return filter{ set.insert($0).inserted }
-//        }
-//    }
-    
-    func removeDuplicates(array: [String]) -> [String] {
-        var encountered = Set<String>()
-        var result: [String] = []
-        for value in array {
-            if encountered.contains(value) {
-                // Do not add a duplicate element.
-            }
-            else {
-                // Add value to the set.
-                encountered.insert(value)
-                // ... Append the value.
-                result.append(value)
-            }
-        }
-        return result
-    }
-    
-}
 
-//extension Date {
-//func isEqual(to date: Date, toGranularity component: Calendar.Component, in calendar: Calendar = .current) -> Bool {
-//    calendar.isDate(self, equalTo: date, toGranularity: component)
-//}
-//
-//func isInSameYear(as date: Date) -> Bool { isEqual(to: date, toGranularity: .year) }
-//func isInSameMonth(as date: Date) -> Bool { isEqual(to: date, toGranularity: .month) }
-//func isInSameWeek(as date: Date) -> Bool { isEqual(to: date, toGranularity: .weekOfYear) }
-//
-//func isInSameDay(as date: Date) -> Bool { Calendar.current.isDate(self, inSameDayAs: date) }
-//
-//var isInThisYear:  Bool { isInSameYear(as: Date()) }
-//var isInThisMonth: Bool { isInSameMonth(as: Date()) }
-//var isInThisWeek:  Bool { isInSameWeek(as: Date()) }
-//
-//var isInYesterday: Bool { Calendar.current.isDateInYesterday(self) }
-//var isInToday:     Bool { Calendar.current.isDateInToday(self) }
-//var isInTomorrow:  Bool { Calendar.current.isDateInTomorrow(self) }
-//
-//var isInTheFuture: Bool { self > Date() }
-//var isInThePast:   Bool { self < Date() }
-//
-//}
 
-  

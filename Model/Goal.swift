@@ -35,8 +35,7 @@ struct Goal: Identifiable {
         self.goalAchievedDate = achievedDate
         
     }
-    
-    
+   
     mutating func addTask(title: String) {
         let newTask = Task(id: UUID(), taskGoal: UUID(), title: title, completed: false, creationDate: Date(), achievedDate: Date())
         goalTasks.append(newTask)

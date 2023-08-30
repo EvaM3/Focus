@@ -9,6 +9,7 @@ import CoreData
 
 protocol CoreDataLoaderProtocol {
     func loadGoal(predicate: NSPredicate?) -> [Goal]
+    func mapToGoal(entity: GoalEntity) -> Goal 
 }
 
 protocol CoreDataUpdaterProtocol {
