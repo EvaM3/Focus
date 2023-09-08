@@ -13,11 +13,11 @@
             <objects>
                 <viewController id="s6W-qb-oKz" customClass="HistoryListViewController" customModule="Focus_On" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JRl-vG-4ae">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZNy-LI-eM5">
-                                <rect key="frame" x="16" y="114" width="382" height="683"/>
+                                <rect key="frame" x="16" y="114" width="382" height="712"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="goalcell" id="4IT-dV-0eP">
@@ -191,6 +191,7 @@
                     <connections>
                         <outlet property="tableView" destination="nNP-QY-I3h" id="gKy-2Z-icW"/>
                         <segue destination="ola-65-Zds" kind="show" identifier="todaySegue" id="BMr-tz-sjj"/>
+                        <segue destination="s6W-qb-oKz" kind="show" identifier="history" id="Uj6-ys-kqu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -333,6 +334,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="BMr-tz-sjj"/>
         <segue reference="89c-f9-00M"/>
+        <segue reference="Uj6-ys-kqu"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="focus" width="32" height="32"/>

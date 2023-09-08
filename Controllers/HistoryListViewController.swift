@@ -53,7 +53,7 @@ class HistoryListViewController: UIViewController {
 
     @IBOutlet weak var tableview: UITableView!
     
-    
+    var historyGoal: String = ""
     
     var listModel: HistoryListModelProtocol = HistoryListModel(dataManager: CoreDataManager())
     
@@ -64,17 +64,19 @@ class HistoryListViewController: UIViewController {
         Goal(id: UUID(), tasks: [Task](), title: "Practice violin", completed: false, creationDate: Date.customGoalDatetoString(customString: "25/08/2023"), achievedDate: nil),
         Goal(id: UUID(), tasks: [Task](), title: "Practice piano", completed: false, creationDate: Date.customGoalDatetoString(customString: "24/08/2023"), achievedDate: nil),
         Goal(id: UUID(), tasks: [Task](), title: "Finish the letters", completed: false, creationDate: Date.customGoalDatetoString(customString: "23/08/2023"), achievedDate: nil),
-        Goal(id: UUID(), tasks: [Task](), title: "Study russian", completed: false, creationDate: Date.customGoalDatetoString(customString: "24/08/2023"), achievedDate: nil)
+        Goal(id: UUID(), tasks: [Task](), title: "Study russian", completed: false, creationDate: Date.customGoalDatetoString(customString: "29/08/2023"), achievedDate: nil)
     ]
     
     var goals = [[Goal]]()
     
     override func viewDidLoad() {
+        dump(historyGoal)
         tableview.dataSource = self
         tableview.delegate = self
         tableview.register(UINib(nibName: "GoalHistoryTableViewCell", bundle: nil), forCellReuseIdentifier: "goalcell")
         tableview.register(UINib(nibName: "TaskHistoryTableViewCell",bundle: nil), forCellReuseIdentifier: "taskcell")
         tableview.register(UINib(nibName: "SummaryCell",bundle: nil), forCellReuseIdentifier: "summarycell")
+        
         super.viewDidLoad()
         DispatchQueue.main.async {
             self.listModel.loadData()
@@ -120,6 +122,7 @@ extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource 
         case .goal:
             if let cell: GoalHistoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "goalcell", for: indexPath) as? GoalHistoryTableViewCell {
                 cell.configureCheckMarkedCell(item: element)
+               
                 return cell
             }
 
@@ -170,10 +173,7 @@ extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource 
            
         }
     }
-//    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
+
     
     func numberOfSections(in tableView: UITableView) -> Int {
       //  return goals.count
@@ -181,24 +181,6 @@ extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource 
         
     }
     
-
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        tableView.sectionHeaderTopPadding = 0
-//        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 30))
-//        let label = UILabel()
-//        label.frame = headerView.frame
-//        label.text = self.listModel.sections[section]
-//        label.font = .systemFont(ofSize: 20)
-//        label.textAlignment = .center
-//        label.textColor = .black
-//        label.backgroundColor = .systemBlue
-//        headerView.addSubview(label)
-//        logger.info("Info: \(Goal.ID.self)")
-//
-//
-//        return headerView
-//
-//    }
     class DateHeaderLabel: UILabel {
         
         override init(frame: CGRect) {
@@ -224,6 +206,7 @@ extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource 
         }
         
     }
+    
       func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
           if let firstMessageInSection = goals[section].first {

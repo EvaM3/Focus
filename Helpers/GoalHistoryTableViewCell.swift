@@ -10,7 +10,7 @@ import UIKit
 class GoalHistoryTableViewCell: UITableViewCell {
     
     
-    @IBOutlet weak var title: UILabel!
+    @IBOutlet  var title: UILabel!
     
     @IBOutlet weak var checkMark: UIImageView!
     

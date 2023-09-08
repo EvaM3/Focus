@@ -96,6 +96,7 @@ class HistoryListModel: HistoryListModelProtocol {
         return summary
     }
 
+    
     private func orderedGoals(from: [Goal]) {
         var generatedSections: [String] = []
         var generatedRows: [[ListElement]] = []
@@ -142,12 +143,15 @@ class HistoryListModel: HistoryListModelProtocol {
                 let currentGoalYearAndMonth = dateFormattingHelper.makeFormattedSummaryDate(date: goal.creationDate)
                 if currentSummaryYearAndMonth != currentGoalYearAndMonth,
                    let currentSummaryYearAndMonth = currentSummaryYearAndMonth {
+                   
+                  let summary = addToSummary()
                     
-                    let summary = addToSummary()
-                    generatedSections.append(summary.yearAndMonth)
-                    generatedRows.append([ListElement(summary: "From \(summary.totalCount) goals \(summary.completedCount) is completed")])
+                generatedSections.append(summary.yearAndMonth)
                     
-                    self.currentSummaryYearAndMonth = currentGoalYearAndMonth
+                    generatedRows.append(mapGoal(goal: goal))
+//                    generatedRows.append([ListElement(summary: "From \(summary.totalCount) goals \(summary.completedCount) is completed")])
+//
+                   self.currentSummaryYearAndMonth = currentGoalYearAndMonth
                     
                     
                 }
@@ -163,7 +167,8 @@ class HistoryListModel: HistoryListModelProtocol {
             if currentSummaryYearAndMonth != currentSummaryYearAndMonth {
                 generatedSections.append(self.currentSummaryYearAndMonth ?? "")
             }
-            generatedRows.append([ListElement(summary: "From \(summary.totalCount) goals \(summary.completedCount) is completed")])
+            generatedRows.append(mapGoal(goal: goal))
+//            generatedRows.append([ListElement(summary: "From \(summary.totalCount) goals \(summary.completedCount) is completed")])
             resetStats()
             
             self.sections = generatedSections.reversed()

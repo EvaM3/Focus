@@ -18,18 +18,7 @@ class TodaysViewController: UIViewController, UITableViewDataSource, UITableView
   
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
   
-  // let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-   
-    
-//    init() {
-//        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-//        super.init()
-//    }
-    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
+ 
     @IBOutlet weak var tableView: UITableView!
     
 
@@ -48,12 +37,6 @@ class TodaysViewController: UIViewController, UITableViewDataSource, UITableView
         Goal(id: UUID(), tasks: [Task](), title: "Practice piano", completed: false, creationDate: Date(), achievedDate: nil)
     ]
      
-//    var todayGoal : [GoalEntity] = [
-//        GoalEntity(context: context, achievedDate: Date(), completed: false, creationDate: Date(), id: UUID(), title: "Practice violin", tasks: <#T##TaskEntity?#>),
-//    GoalEntity(context: <#T##NSManagedObjectContext#>, achievedDate: <#T##Date?#>, completed: <#T##Bool#>, creationDate: <#T##Date?#>, id: <#T##UUID?#>, title: <#T##String?#>, tasks: <#T##TaskEntity?#>),
-//    GoalEntity(context: <#T##NSManagedObjectContext#>, achievedDate: <#T##Date?#>, completed: <#T##Bool#>, creationDate: <#T##Date?#>, id: <#T##UUID?#>, title: <#T##String?#>, tasks: <#T##TaskEntity?#>),
-//    GoalEntity(context: <#T##NSManagedObjectContext#>, achievedDate: <#T##Date?#>, completed: <#T##Bool#>, creationDate: <#T##Date?#>, id: <#T##UUID?#>, title: <#T##String?#>, tasks: <#T##TaskEntity?#>)
-//    ]
     
     var tasks = [
         Task(id: UUID(), taskGoal: UUID(), title: "Finish the book", completed: false,creationDate: Date(), achievedDate: nil),
@@ -236,6 +219,7 @@ class TodaysViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
         
@@ -269,8 +253,7 @@ class TodaysViewController: UIViewController, UITableViewDataSource, UITableView
             cell.delegate = self
             
             let goalForToday = todaysGoal[indexPath.row]
-            
-            //cell.textLabel?.text = goalForToday.title
+        
             
            cell.set(title: goalForToday.title ?? "Reorder the room", checked: goalForToday.completed)
         
@@ -306,7 +289,11 @@ class TodaysViewController: UIViewController, UITableViewDataSource, UITableView
         tasks.insert(todo, at: destinationIndexPath.row)
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            self.performSegue(withIdentifier: "history", sender: self)
+           }
+    }
     
     //MARK: Segue actions
     
@@ -335,6 +322,15 @@ class TodaysViewController: UIViewController, UITableViewDataSource, UITableView
         return vc
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "history" , let historyVc = segue.destination as? HistoryListViewController {
+        let goalForToday = todaysGoal[0]
+            historyVc.historyGoal = goalForToday.title!
+        super.prepare(for: segue, sender: sender)
+        }
+        
+    }
     
     func checkTableViewCell(_ cell: CheckTableViewCell, didChangeCheckedState checked: Bool) {
         guard let indexPath = tableView.indexPath(for: cell) else {
