@@ -228,7 +228,7 @@ class TodaysViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return  4 //tasks.count
+        return 4
        
     }
     
@@ -254,9 +254,13 @@ class TodaysViewController: UIViewController, UITableViewDataSource, UITableView
             
             let goalForToday = todaysGoal[indexPath.row]
         
-            
-           cell.set(title: goalForToday.title ?? "Reorder the room", checked: goalForToday.completed)
         
+           cell.set(title: goalForToday.title ?? "Reorder the room", checked: goalForToday.completed)
+            
+            cell.transform = CGAffineTransform(translationX: 0, y: cell.contentView.frame.height)
+            UIView.animate(withDuration: 0.5, delay: 0.05 * Double(indexPath.row), animations: {
+                  cell.transform = CGAffineTransform(translationX: cell.contentView.frame.width, y: cell.contentView.frame.height)
+            })
         return cell
             
         } else {
@@ -270,7 +274,11 @@ class TodaysViewController: UIViewController, UITableViewDataSource, UITableView
       //  cell.textLabel?.text = tasksForToday.title
     
         cell.set(title: tasksForToday.title, checked: tasksForToday.completed)
-    
+            
+        cell.transform = CGAffineTransform(translationX: 0, y: cell.contentView.frame.height)
+                UIView.animate(withDuration: 0.5, delay: 0.05 * Double(indexPath.row), animations: {
+                              cell.transform = CGAffineTransform(translationX: cell.contentView.frame.width, y: cell.contentView.frame.height)
+                    })
     return cell
         }
     }

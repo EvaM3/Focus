@@ -50,12 +50,19 @@ extension Date {
 
 
 class HistoryListViewController: UIViewController {
-
+    
     @IBOutlet weak var tableview: UITableView!
     
     var historyGoal: String = ""
     
     var listModel: HistoryListModelProtocol = HistoryListModel(dataManager: CoreDataManager())
+    
+    struct daySection {
+        var day: Date
+        var dailyGoals: [Goal]
+        
+    }
+    
     
     var newGoal = [
         Goal(id: UUID(), tasks: [Task](), title: "Finish the app.", completed: false, creationDate: Date.customGoalDatetoString(customString: "27/08/2023"), achievedDate: nil),
@@ -68,6 +75,8 @@ class HistoryListViewController: UIViewController {
     ]
     
     var goals = [[Goal]]()
+    var sections = [daySection]()
+   // var goal = [Goal]()
     
     override func viewDidLoad() {
         dump(historyGoal)
@@ -77,109 +86,170 @@ class HistoryListViewController: UIViewController {
         tableview.register(UINib(nibName: "TaskHistoryTableViewCell",bundle: nil), forCellReuseIdentifier: "taskcell")
         tableview.register(UINib(nibName: "SummaryCell",bundle: nil), forCellReuseIdentifier: "summarycell")
         
+        
+        
+        
+        func dayAndMonth(date: Date) -> Date {
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.day, .month, .year], from: date)
+            
+            return calendar.date(from: components)!
+        }
+        
+        
+        
         super.viewDidLoad()
         DispatchQueue.main.async {
             self.listModel.loadData()
             self.tableview.reloadData()
-            self.groupGoals()
+            // self.groupGoals()
+            
         }
-       
+        
+        let groups = Dictionary(grouping: self.newGoal) { (goals) -> Date in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/YYYY"
+            
+            return dayAndMonth(date: goals.creationDate)
+        }
+        let sortedKeys = groups.keys.sorted { $0 < $1 }
+       // let sortedDays = sortedKeys.map{daySection(day: $0)}
+      
+        self.sections = groups.map(daySection.init(day:dailyGoals:))
+        
     }
+    
+    
+    
+    
+    
     
     
     func groupGoals() {
         
-      let groupedGoals = Dictionary(grouping: newGoal) { (element) -> Date in
-          return element.creationDate.reduceToMonthDayYear()
+        let groupedGoals = Dictionary(grouping: newGoal) { (element) -> Date in
+            return element.creationDate.reduceToMonthDayYear()
         }
-        let sortedKeys = groupedGoals.keys.sorted()
+        let sortedKeys = groupedGoals.map{$0.key}
+        // let sortedKeys = groupedGoals.keys.sorted()
         sortedKeys.forEach { (keys) in
             let values = groupedGoals[keys]
             goals.append(values ?? [])
         }
     }
-  
+    
 }
 
 
-    // MARK: Tableview functions:
+
+// MARK: Tableview functions:
 extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-       // return goals[section].count
-        listModel.sectionRows[section].count
+        let section = self.sections[section]
+        return section.dailyGoals.count
+       // listModel.sectionRows[section].count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-      
-        let element = listModel.sectionRows[indexPath.section][indexPath.row]
-
-        switch element.type {
-
-        case .goal:
-            if let cell: GoalHistoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "goalcell", for: indexPath) as? GoalHistoryTableViewCell {
-                cell.configureCheckMarkedCell(item: element)
-               
-                return cell
-            }
-
-        case .task:
-            if let cell: TaskHistoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "taskcell", for: indexPath) as? TaskHistoryTableViewCell {
-                cell.configureCheckMarkedCell(item: element)
-                return cell
-            }
-
-        case .summary:
-            if let cell: SummaryCell = tableView.dequeueReusableCell(withIdentifier: "summarycell", for: indexPath) as? SummaryCell {
-                cell.configureSummaryCell(item: element)
-                return cell
-            }
-
-            if indexPath.row == 2 {
-                let cell:GoalHistoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "goalcell", for: indexPath) as! GoalHistoryTableViewCell
-                cell.configureCheckMarkedCell(item: element)
-                let historygoal = goals[indexPath.section][indexPath.row]
-                cell.textLabel?.text = historygoal.title
-                return cell
-
-            } else {
-                let cell: TaskHistoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "taskcell", for: indexPath) as! TaskHistoryTableViewCell
-                cell.configureCheckMarkedCell(item: element)
-                cell.textLabel?.text = element.title
-                return cell
-            }
-
-
-        }
-
-        return UITableViewCell()
-    
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let element = listModel.sectionRows[indexPath.section][indexPath.row]
-        switch element.type {
-        case .goal:
-            return 60
-            
-        case .task:
-            return 40
-          
-        case .summary:
-            return 70
-           
-        }
-    }
-
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-      //  return goals.count
-        self.listModel.sections.count
+        let cell = tableView.dequeueReusableCell(withIdentifier: "goalcell", for: indexPath)
+        let section = self.sections[indexPath.section]
+        let goalForTheday = section.dailyGoals[indexPath.row]
+        cell.textLabel?.text = goalForTheday.title
+       
+        return cell
+        
+        
+//        let element = listModel.sectionRows[indexPath.section][indexPath.row]
+//
+//        switch element.type {
+//
+//        case .goal:
+//            if let cell: GoalHistoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "goalcell", for: indexPath) as? GoalHistoryTableViewCell {
+//                cell.configureCheckMarkedCell(item: element)
+//
+//                return cell
+//            }
+//
+//        case .task:
+//            if let cell: TaskHistoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "taskcell", for: indexPath) as? TaskHistoryTableViewCell {
+//                cell.configureCheckMarkedCell(item: element)
+//                return cell
+//            }
+//
+//        case .summary:
+//            if let cell: SummaryCell = tableView.dequeueReusableCell(withIdentifier: "summarycell", for: indexPath) as? SummaryCell {
+//                cell.configureSummaryCell(item: element)
+//                return cell
+//            }
+//
+//
+//            if indexPath.row == 2 {
+//                let cell:GoalHistoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "goalcell", for: indexPath) as! GoalHistoryTableViewCell
+//                cell.configureCheckMarkedCell(item: element)
+//                let historygoal = goals[indexPath.section][indexPath.row]
+//                cell.textLabel?.text = historygoal.title
+//                return cell
+//
+//            } else {
+//                let cell: TaskHistoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "taskcell", for: indexPath) as! TaskHistoryTableViewCell
+//                cell.configureCheckMarkedCell(item: element)
+//                cell.textLabel?.text = element.title
+//                return cell
+//            }
+//
+//
+//        }
+//
+//        return UITableViewCell()
         
     }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        let element = listModel.sectionRows[indexPath.section][indexPath.row]
+//        switch element.type {
+//        case .goal:
+//            return 60
+//
+//        case .task:
+//            return 40
+//
+//        case .summary:
+//            return 70
+//
+//        }
+//    }
+//
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        //  return goals.count
+        
+        return self.sections.count
+       // self.listModel.sections.count
+        
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+            if section == 0{
+               return "Pass Your String For Header"
+           }else{
+              return "Pass Your String For Header"
+         }
+     }
+    
+//    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//        let titleView = view as? UITableViewHeaderFooterView
+//        titleView?.textLabel?.text =  "From 0 goals 0 is completed"//titleView.textLabel?.text?.lowercased()
+//    }
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        switch(section) {
+//        case 1: return "From 0 goals 0 is completed."
+//        default : return ""
+//        }
+//
+//    }
     
     class DateHeaderLabel: UILabel {
         
@@ -207,29 +277,38 @@ extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource 
         
     }
     
-      func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-          if let firstMessageInSection = goals[section].first {
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+      
+
+      //  if let firstMessageInSection = goals[section].first {
+     
+       
+            let section = self.sections[section]
+            let date = section.day
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-              let dateString = dateFormatter.string(from: firstMessageInSection.creationDate)
-            
+            dateFormatter.dateFormat = "dd/MM/YYYY"
+            let dateString = dateFormatter.string(from: date)
             let label = DateHeaderLabel()
             label.text = dateString
-            
+
             let containerView = UIView()
-            
+
             containerView.addSubview(label)
             label.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
             label.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-            
-            return containerView
-            
-        }
-        return nil
-    }
-}
 
+            return containerView
+            //
+       // }
+      //  return nil
+    }
+    
+    
+    
+}
 
 
 

@@ -16,13 +16,14 @@ let historylogger = Logger(subsystem: "tora.buke-gmail.com.Focus-On", category: 
 protocol HistoryListModelProtocol  {
     var sections: [String] { get }
     var sectionRows: [[ListElement]] { get }
-    
     func loadData()
 }
 
 
 
 class HistoryListModel: HistoryListModelProtocol {
+  
+    
     
     
     
@@ -51,6 +52,9 @@ class HistoryListModel: HistoryListModelProtocol {
         Goal(id: UUID(), tasks: [Task](), title: "Practice violin", completed: false, creationDate: Date.customGoalDatetoString(customString: "25/08/2023"), achievedDate: nil),
         Goal(id: UUID(), tasks: [Task](), title: "Practice piano", completed: false, creationDate: Date.customGoalDatetoString(customString: "24/08/2023"), achievedDate: nil)
     ]
+    
+   
+    
     
     func loadData() {
         //dataManager.generateRandomData()
@@ -97,7 +101,7 @@ class HistoryListModel: HistoryListModelProtocol {
     }
 
     
-    private func orderedGoals(from: [Goal]) {
+        func orderedGoals(from: [Goal]) {
         var generatedSections: [String] = []
         var generatedRows: [[ListElement]] = []
         let grouped = from.sliced(by: [.year, .month, .day], for: \.creationDate)
@@ -128,14 +132,11 @@ class HistoryListModel: HistoryListModelProtocol {
         
     
         let sortedGoals = from.sorted { $1.creationDate > $0.creationDate }
-        
-//        let groupDate = Dictionary(grouping: generatedSections) { (Goal) -> DateComponents in
-//            let goal = Goal.self
-//            let date = Calendar.current.dateComponents([.day, .year, .month], from: Goal(Goal).goalCreationDate)
-//            return date
-//        }
-        
+ 
+      
+      
         for goal in sortedGoals {
+         
             if self.currentSummaryYearAndMonth == nil {
                 self.currentSummaryYearAndMonth = dateFormattingHelper.makeFormattedSummaryDate(date: goal.creationDate)
                 
@@ -149,7 +150,7 @@ class HistoryListModel: HistoryListModelProtocol {
                 generatedSections.append(summary.yearAndMonth)
                     
                     generatedRows.append(mapGoal(goal: goal))
-//                    generatedRows.append([ListElement(summary: "From \(summary.totalCount) goals \(summary.completedCount) is completed")])
+                   generatedRows.append([ListElement(summary: "From \(summary.totalCount) goals \(summary.completedCount) is completed")])
 //
                    self.currentSummaryYearAndMonth = currentGoalYearAndMonth
                     
@@ -164,16 +165,17 @@ class HistoryListModel: HistoryListModelProtocol {
             
             
             let summary = addToSummary()
+           
             if currentSummaryYearAndMonth != currentSummaryYearAndMonth {
                 generatedSections.append(self.currentSummaryYearAndMonth ?? "")
             }
             generatedRows.append(mapGoal(goal: goal))
-//            generatedRows.append([ListElement(summary: "From \(summary.totalCount) goals \(summary.completedCount) is completed")])
+           generatedRows.append([ListElement(summary: "From \(summary.totalCount) goals \(summary.completedCount) is completed")])
             resetStats()
             
             self.sections = generatedSections.reversed()
             self.sectionRows = generatedRows.reversed()
-            // orderedGoals(from: [goal])
+            orderedGoals(from: [goal])
         }
        
         

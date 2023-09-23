@@ -30,14 +30,39 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QDj-n6-hai">
+                                <rect key="frame" x="22" y="52" width="370" height="27.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="History">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="23"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From 0 goals 0 is completed" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1h-YL-fOY">
+                                <rect key="frame" x="8" y="79.5" width="398" height="34.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GcP-vU-zL5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="x1h-YL-fOY" firstAttribute="leading" secondItem="GcP-vU-zL5" secondAttribute="leading" constant="8" id="0pW-VD-LK7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QDj-n6-hai" secondAttribute="trailing" constant="2" id="B33-Lb-4EY"/>
+                            <constraint firstItem="QDj-n6-hai" firstAttribute="leading" secondItem="JRl-vG-4ae" secondAttribute="leadingMargin" constant="2" id="BDl-V7-eB0"/>
                             <constraint firstItem="GcP-vU-zL5" firstAttribute="bottom" secondItem="ZNy-LI-eM5" secondAttribute="bottom" constant="16" id="BNy-cg-eOT"/>
                             <constraint firstItem="GcP-vU-zL5" firstAttribute="trailing" secondItem="ZNy-LI-eM5" secondAttribute="trailing" constant="16" id="BjV-0K-oDm"/>
                             <constraint firstItem="ZNy-LI-eM5" firstAttribute="top" secondItem="GcP-vU-zL5" secondAttribute="top" constant="70" id="CXm-f4-JIJ"/>
+                            <constraint firstItem="ZNy-LI-eM5" firstAttribute="top" secondItem="x1h-YL-fOY" secondAttribute="bottom" id="SHm-mp-WSA"/>
+                            <constraint firstItem="x1h-YL-fOY" firstAttribute="top" secondItem="QDj-n6-hai" secondAttribute="bottom" id="U4u-gV-exK"/>
+                            <constraint firstItem="QDj-n6-hai" firstAttribute="top" secondItem="GcP-vU-zL5" secondAttribute="top" constant="8" id="gyg-I0-a3p"/>
                             <constraint firstItem="ZNy-LI-eM5" firstAttribute="leading" secondItem="GcP-vU-zL5" secondAttribute="leading" constant="16" id="owH-AP-KEp"/>
+                            <constraint firstItem="GcP-vU-zL5" firstAttribute="trailing" secondItem="x1h-YL-fOY" secondAttribute="trailing" constant="8" id="phQ-YJ-bAW"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="History" image="history" id="Eyf-0h-NmH"/>
