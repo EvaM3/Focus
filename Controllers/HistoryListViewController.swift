@@ -52,18 +52,35 @@ extension Date {
 class HistoryListViewController: UIViewController {
     
     @IBOutlet weak var tableview: UITableView!
+ 
     
     var historyGoal: String = ""
     
     var listModel: HistoryListModelProtocol = HistoryListModel(dataManager: CoreDataManager())
     
+    
     struct daySection {
-        var day: Date
-        var dailyGoals: [Goal]
+       
+        var day : Date
+        var dailyGoals =  [Goal(id: UUID(), tasks: [Task](), title: "Finish the app.", completed: false, creationDate: Date.customGoalDatetoString(customString: "27/08/2023"), achievedDate: nil),
+                         Goal(id: UUID(), tasks: [Task](), title: "Complete the project", completed: false, creationDate: Date.customGoalDatetoString(customString: "28/08/2023"), achievedDate: nil),
+                         Goal(id: UUID(), tasks: [Task](), title: "Study more", completed: false, creationDate: Date.customGoalDatetoString(customString: "26/08/2023"), achievedDate: nil),
+                         Goal(id: UUID(), tasks: [Task](), title: "Practice violin", completed: false, creationDate: Date.customGoalDatetoString(customString: "25/08/2023"), achievedDate: nil),
+                         Goal(id: UUID(), tasks: [Task](), title: "Practice piano", completed: false, creationDate: Date.customGoalDatetoString(customString: "24/08/2023"), achievedDate: nil),
+                         Goal(id: UUID(), tasks: [Task](), title: "Finish the letters", completed: false, creationDate: Date.customGoalDatetoString(customString: "23/08/2023"), achievedDate: nil),
+                         Goal(id: UUID(), tasks: [Task](), title: "Study russian", completed: false, creationDate: Date.customGoalDatetoString(customString: "29/08/2023"), achievedDate: nil)]
         
     }
     
+    struct goalOfTheDay {
+        var goal = GoalEntity()
+        var tasks = [TaskEntity]()
+        
+    }
     
+    var todaysSection = [daySection]()
+   
+
     var newGoal = [
         Goal(id: UUID(), tasks: [Task](), title: "Finish the app.", completed: false, creationDate: Date.customGoalDatetoString(customString: "27/08/2023"), achievedDate: nil),
         Goal(id: UUID(), tasks: [Task](), title: "Complete the project", completed: false, creationDate: Date.customGoalDatetoString(customString: "28/08/2023"), achievedDate: nil),
@@ -148,19 +165,22 @@ extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = self.sections[section]
         return section.dailyGoals.count
-       // listModel.sectionRows[section].count
+     // listModel.sectionRows[section].count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        if indexPath.row == 0 {
         let cell = tableView.dequeueReusableCell(withIdentifier: "goalcell", for: indexPath)
         let section = self.sections[indexPath.section]
         let goalForTheday = section.dailyGoals[indexPath.row]
         cell.textLabel?.text = goalForTheday.title
        
         return cell
-        
+        } else {
+            let cell = tableview.dequeueReusableCell(withIdentifier: "taskcell", for: indexPath)
+            cell.textLabel?.text  = "Go for a run"
+        }
         
 //        let element = listModel.sectionRows[indexPath.section][indexPath.row]
 //
@@ -202,8 +222,7 @@ extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource 
 //
 //
 //        }
-//
-//        return UITableViewCell()
+       return UITableViewCell()
         
     }
     

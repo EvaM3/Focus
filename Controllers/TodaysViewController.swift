@@ -27,6 +27,7 @@ class TodaysViewController: UIViewController, UITableViewDataSource, UITableView
    private var todaysTasks = [TaskEntity]()
         
     
+    
   
     
     var newGoal = [
@@ -209,7 +210,7 @@ class TodaysViewController: UIViewController, UITableViewDataSource, UITableView
     }
    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tasks.count // max(3, tasks.count)
+        return  tasks.count  //max(3, tasks.count)
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

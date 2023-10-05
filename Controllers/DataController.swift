@@ -7,6 +7,10 @@
 import UIKit
 import CoreData
 
+
+
+
+
 protocol CoreDataLoaderProtocol {
     func loadGoal(predicate: NSPredicate?) -> [Goal]
     func mapToGoal(entity: GoalEntity) -> Goal 
@@ -19,12 +23,29 @@ protocol CoreDataUpdaterProtocol {
 }
 
 
-
+//  let context = DataManager.sharedManager.persistentContainer.viewContext
+//  var commitPredicate: NSPredicate?
 
 class CoreDataManager: CoreDataLoaderProtocol, CoreDataUpdaterProtocol {
     
-  //  let context = DataManager.sharedManager.persistentContainer.viewContext
-  //  var commitPredicate: NSPredicate?
+ 
+   static func sortDates() {
+    let testArray = ["25 Jun, 2023", "30 Jun, 2023", "28 Jun, 2023", "2 Jul, 2023"]
+    var convertedArray: [Date] = []
+
+    var dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd MM, yyyy"// yyyy-MM-dd"
+
+    for dat in testArray {
+        let date = dateFormatter.date(from: dat)
+        if let date = date {
+            convertedArray.append(date)
+        }
+    }
+
+        let ready = convertedArray.sorted(by: { $0.compare($1) == .orderedDescending })
+    
+    }
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
