@@ -208,10 +208,10 @@ class TodaysViewController: UIViewController, UITableViewDataSource, UITableView
         }
         return UISwipeActionsConfiguration(actions: [action])
     }
-   
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return  tasks.count  //max(3, tasks.count)
-    }
+//
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return  tasks.count //max(3, tasks.count)
+//    }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         
@@ -228,22 +228,28 @@ class TodaysViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 4
+        switch section {
+        case 0: // Goal
+            return 1
+        case 1: // Task
+            return 3
+        default:
+            return 1
+       // return 4
        
     }
     
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath.row == 0 & 1) {
-            return 180
-            
-        } else {
-            
-            return 80
-            
-        }
     }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        if (indexPath.row == 0 & 1) {
+//            return 180
+//
+//        } else {
+//
+//            return 80
+//
+//        }
+//    }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -255,6 +261,7 @@ class TodaysViewController: UIViewController, UITableViewDataSource, UITableView
             
             let goalForToday = todaysGoal[indexPath.row]
         
+            
         
            cell.set(title: goalForToday.title ?? "Reorder the room", checked: goalForToday.completed)
             

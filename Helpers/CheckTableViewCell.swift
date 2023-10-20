@@ -15,10 +15,10 @@ protocol CheckTableViewCellDelegate: AnyObject {
 class CheckTableViewCell: UITableViewCell {
 
 
-  
-    @IBOutlet weak var label: UILabel!
+
     
-   
+    @IBOutlet weak var taskText: UITextView!
+    
     
     @IBOutlet weak var checkbox: Checkbox!
    
@@ -36,10 +36,21 @@ class CheckTableViewCell: UITableViewCell {
     weak var delegate: CheckTableViewCellDelegate?
     
     
-  
+    func taskPlaceholder() {
+        taskText.text = "Your task"
+        taskText.textColor = UIColor.lightGray
+    }
+    
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if taskText.textColor == UIColor.lightGray {
+            taskText.text = nil
+            taskText.textColor = UIColor.black
+        }
+    }
    
     func set(title: String, checked: Bool) {
-        label.text = title
+    taskText.text = title
         checkbox.checked = checked
         updateChecked()
     }
@@ -50,7 +61,7 @@ class CheckTableViewCell: UITableViewCell {
     }
   
     private func updateChecked() {
-        let attributedString = NSMutableAttributedString(string: label.text!)
+        let attributedString = NSMutableAttributedString(string: taskText.text!)
         
         if checkbox.checked {
           attributedString.addAttribute(.strikethroughStyle, value: 2, range: NSMakeRange(0, attributedString.length-1))
@@ -58,7 +69,7 @@ class CheckTableViewCell: UITableViewCell {
           attributedString.removeAttribute(.strikethroughStyle, range: NSMakeRange(0, attributedString.length-1))
         }
         
-        label.attributedText = attributedString
+    taskText.attributedText = attributedString
       }
      
     

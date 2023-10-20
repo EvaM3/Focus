@@ -13,12 +13,12 @@ protocol GoalCheckCellDelegate: AnyObject {
     func goalCheckCell(_ cell: GoalCheckCell, didChangeCheckedState checked: Bool)
 }
 
-    class GoalCheckCell: UITableViewCell {
+    class GoalCheckCell: UITableViewCell, UITextViewDelegate {
 
         
 
+        @IBOutlet weak var goalText: UITextView!
         
-        @IBOutlet weak var goalLabel: UILabel!
         
         @IBOutlet weak var goalCheckbox: GoalCheckbox!
         
@@ -33,8 +33,23 @@ protocol GoalCheckCellDelegate: AnyObject {
         
        static let identifier = "goalCell"
         
+        func goalPlaceholder() {
+            goalText.text = "Your goal for today...Go, rock on!"
+            goalText.textColor = UIColor.lightGray
+        }
+        
+        
+        func textViewDidBeginEditing(_ textView: UITextView) {
+            if goalText.textColor == UIColor.lightGray {
+                goalText.text = nil
+                goalText.textColor = UIColor.black
+            }
+        }
+        
+       
+        
         func set(title: String, checked: Bool) {
-            goalLabel.text = title
+            goalText.text = title
             goalCheckbox.checked = checked
             updateChecked()
         }
@@ -45,7 +60,7 @@ protocol GoalCheckCellDelegate: AnyObject {
         }
       
         private func updateChecked() {
-            let attributedString = NSMutableAttributedString(string:  goalLabel.text!)
+            let attributedString = NSMutableAttributedString(string:  goalText.text!)
             
             if goalCheckbox.checked {
               attributedString.addAttribute(.strikethroughStyle, value: 2, range: NSMakeRange(0, attributedString.length-1))
@@ -53,7 +68,7 @@ protocol GoalCheckCellDelegate: AnyObject {
               attributedString.removeAttribute(.strikethroughStyle, range: NSMakeRange(0, attributedString.length-1))
             }
             
-            goalLabel.attributedText = attributedString
+            goalText.attributedText = attributedString
           }
          
          

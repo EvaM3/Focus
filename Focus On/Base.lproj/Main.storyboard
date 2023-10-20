@@ -111,12 +111,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="81"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gl-g4-HuU">
-                                                    <rect key="frame" x="20" y="40.5" width="0.0" height="0.0"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVD-zQ-hQI" customClass="GoalCheckbox" customModule="Focus_On" customModuleProvider="target">
                                                     <rect key="frame" x="307" y="19" width="95" height="43"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -124,21 +118,29 @@
                                                         <action selector="checked:" destination="2Rw-M1-NV6" eventType="valueChanged" id="CLT-5r-q25"/>
                                                     </connections>
                                                 </view>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6Ia-CM-1qJ" userLabel="goalText">
+                                                    <rect key="frame" x="0.0" y="0.0" width="307" height="81"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="textColor" systemColor="labelColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="6Ia-CM-1qJ" firstAttribute="leading" secondItem="aYV-p8-Zjv" secondAttribute="leading" id="1VU-7j-sxL"/>
                                                 <constraint firstItem="vVD-zQ-hQI" firstAttribute="centerY" secondItem="aYV-p8-Zjv" secondAttribute="centerY" id="C3p-sV-18U"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="vVD-zQ-hQI" secondAttribute="trailing" constant="-8" id="CQ3-Ac-wWI"/>
-                                                <constraint firstItem="vVD-zQ-hQI" firstAttribute="centerY" secondItem="5Gl-g4-HuU" secondAttribute="centerY" id="G7M-dW-GSz"/>
-                                                <constraint firstItem="vVD-zQ-hQI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5Gl-g4-HuU" secondAttribute="trailing" constant="8" symbolic="YES" id="Tmd-Uw-Cti"/>
+                                                <constraint firstItem="vVD-zQ-hQI" firstAttribute="leading" secondItem="6Ia-CM-1qJ" secondAttribute="trailing" id="R1J-bu-u9z"/>
                                                 <constraint firstItem="vVD-zQ-hQI" firstAttribute="top" secondItem="aYV-p8-Zjv" secondAttribute="topMargin" constant="8" id="c99-tE-8u8"/>
+                                                <constraint firstAttribute="bottom" secondItem="6Ia-CM-1qJ" secondAttribute="bottom" id="d7K-Tv-dss"/>
                                                 <constraint firstItem="vVD-zQ-hQI" firstAttribute="leading" secondItem="aYV-p8-Zjv" secondAttribute="leading" constant="307" id="kZY-8E-ve1"/>
-                                                <constraint firstItem="5Gl-g4-HuU" firstAttribute="leading" secondItem="aYV-p8-Zjv" secondAttribute="leadingMargin" id="lDh-3v-HBS"/>
+                                                <constraint firstItem="6Ia-CM-1qJ" firstAttribute="top" secondItem="aYV-p8-Zjv" secondAttribute="top" id="uB0-8E-tKr"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="goalCheckbox" destination="vVD-zQ-hQI" id="6WV-MD-Onq"/>
-                                            <outlet property="goalLabel" destination="5Gl-g4-HuU" id="PMy-Ju-gho"/>
+                                            <outlet property="goalText" destination="6Ia-CM-1qJ" id="rud-h7-HcA"/>
                                             <segue destination="Faq-9g-qnl" kind="show" destinationCreationSelector="todayGoalvc:" id="rrG-DL-9Zo"/>
                                         </connections>
                                     </tableViewCell>
@@ -149,12 +151,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="97"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLu-dh-Sxi">
-                                                    <rect key="frame" x="36" y="11" width="0.0" height="75"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xec-0M-Wqk" customClass="Checkbox" customModule="Focus_On" customModuleProvider="target">
                                                     <rect key="frame" x="289" y="0.0" width="117" height="97"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -162,21 +158,28 @@
                                                         <action selector="checked:" destination="uyM-U6-qA5" eventType="valueChanged" id="wMX-jQ-CBU"/>
                                                     </connections>
                                                 </view>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FRb-kP-DEB" userLabel="taskText">
+                                                    <rect key="frame" x="0.0" y="0.0" width="289" height="97"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="textColor" systemColor="labelColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="FRb-kP-DEB" firstAttribute="top" secondItem="v2w-cV-3Bb" secondAttribute="top" id="AhC-bw-fAv"/>
+                                                <constraint firstAttribute="bottom" secondItem="FRb-kP-DEB" secondAttribute="bottom" id="E0u-vE-3cr"/>
                                                 <constraint firstAttribute="bottom" secondItem="Xec-0M-Wqk" secondAttribute="bottom" id="I9W-1v-aEZ"/>
+                                                <constraint firstItem="FRb-kP-DEB" firstAttribute="leading" secondItem="v2w-cV-3Bb" secondAttribute="leading" id="KHG-bI-pDu"/>
                                                 <constraint firstAttribute="trailing" secondItem="Xec-0M-Wqk" secondAttribute="trailing" constant="8" id="O1j-WN-eG4"/>
-                                                <constraint firstItem="Xec-0M-Wqk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dLu-dh-Sxi" secondAttribute="trailing" constant="8" symbolic="YES" id="Rez-2y-SKl"/>
                                                 <constraint firstItem="Xec-0M-Wqk" firstAttribute="top" secondItem="v2w-cV-3Bb" secondAttribute="top" id="Spr-tJ-f19"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="dLu-dh-Sxi" secondAttribute="bottom" id="beb-dd-xIl"/>
-                                                <constraint firstItem="dLu-dh-Sxi" firstAttribute="top" secondItem="v2w-cV-3Bb" secondAttribute="topMargin" id="e9a-tJ-509"/>
-                                                <constraint firstItem="dLu-dh-Sxi" firstAttribute="leading" secondItem="v2w-cV-3Bb" secondAttribute="leadingMargin" constant="16" id="y2e-kQ-0xL"/>
+                                                <constraint firstItem="Xec-0M-Wqk" firstAttribute="leading" secondItem="FRb-kP-DEB" secondAttribute="trailing" id="X1p-eO-2NL"/>
                                                 <constraint firstItem="Xec-0M-Wqk" firstAttribute="leading" secondItem="v2w-cV-3Bb" secondAttribute="leading" constant="289" id="yyA-Ai-hRq"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="checkbox" destination="Xec-0M-Wqk" id="q6n-ys-4Fw"/>
-                                            <outlet property="label" destination="dLu-dh-Sxi" id="z1a-6n-Jc5"/>
+                                            <outlet property="taskText" destination="FRb-kP-DEB" id="d0c-or-MaG"/>
                                             <segue destination="ola-65-Zds" kind="show" identifier="taskSegue" id="QS8-ZX-NBe"/>
                                         </connections>
                                     </tableViewCell>
@@ -368,6 +371,9 @@
         <image name="progress" width="24" height="24"/>
         <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
